@@ -1,0 +1,121 @@
+digraph {
+	compound = "true"
+	newrank = "true"
+	subgraph "root" {
+		"[root] aws_iam_instance_profile.nginx_profile (expand)" [label = "aws_iam_instance_profile.nginx_profile", shape = "box"]
+		"[root] aws_iam_role.allow_nginx_s3 (expand)" [label = "aws_iam_role.allow_nginx_s3", shape = "box"]
+		"[root] aws_iam_role_policy.allow_s3_all (expand)" [label = "aws_iam_role_policy.allow_s3_all", shape = "box"]
+		"[root] aws_instance.nginx1 (expand)" [label = "aws_instance.nginx1", shape = "box"]
+		"[root] aws_instance.nginx2 (expand)" [label = "aws_instance.nginx2", shape = "box"]
+		"[root] aws_internet_gateway.igw (expand)" [label = "aws_internet_gateway.igw", shape = "box"]
+		"[root] aws_lb.nginx (expand)" [label = "aws_lb.nginx", shape = "box"]
+		"[root] aws_lb_listener.nginx (expand)" [label = "aws_lb_listener.nginx", shape = "box"]
+		"[root] aws_lb_target_group.nginx (expand)" [label = "aws_lb_target_group.nginx", shape = "box"]
+		"[root] aws_lb_target_group_attachment.nginx1 (expand)" [label = "aws_lb_target_group_attachment.nginx1", shape = "box"]
+		"[root] aws_lb_target_group_attachment.nginx2 (expand)" [label = "aws_lb_target_group_attachment.nginx2", shape = "box"]
+		"[root] aws_route_table.rtb (expand)" [label = "aws_route_table.rtb", shape = "box"]
+		"[root] aws_route_table_association.rta-subnet1 (expand)" [label = "aws_route_table_association.rta-subnet1", shape = "box"]
+		"[root] aws_route_table_association.rta-subnet2 (expand)" [label = "aws_route_table_association.rta-subnet2", shape = "box"]
+		"[root] aws_s3_bucket.web_bucket (expand)" [label = "aws_s3_bucket.web_bucket", shape = "box"]
+		"[root] aws_s3_bucket_object.graphic (expand)" [label = "aws_s3_bucket_object.graphic", shape = "box"]
+		"[root] aws_s3_bucket_object.website (expand)" [label = "aws_s3_bucket_object.website", shape = "box"]
+		"[root] aws_security_group.alb_sg (expand)" [label = "aws_security_group.alb_sg", shape = "box"]
+		"[root] aws_security_group.nginx_sg (expand)" [label = "aws_security_group.nginx_sg", shape = "box"]
+		"[root] aws_subnet.subnet1 (expand)" [label = "aws_subnet.subnet1", shape = "box"]
+		"[root] aws_subnet.subnet2 (expand)" [label = "aws_subnet.subnet2", shape = "box"]
+		"[root] aws_vpc.vpc (expand)" [label = "aws_vpc.vpc", shape = "box"]
+		"[root] data.aws_availability_zones.available (expand)" [label = "data.aws_availability_zones.available", shape = "box"]
+		"[root] data.aws_elb_service_account.root (expand)" [label = "data.aws_elb_service_account.root", shape = "box"]
+		"[root] data.aws_ssm_parameter.ami (expand)" [label = "data.aws_ssm_parameter.ami", shape = "box"]
+		"[root] output.aws_instance_public_dns" [label = "output.aws_instance_public_dns", shape = "note"]
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"]" [label = "provider[\"registry.terraform.io/hashicorp/aws\"]", shape = "diamond"]
+		"[root] provider[\"registry.terraform.io/hashicorp/random\"]" [label = "provider[\"registry.terraform.io/hashicorp/random\"]", shape = "diamond"]
+		"[root] random_integer.rand (expand)" [label = "random_integer.rand", shape = "box"]
+		"[root] var.aws_region" [label = "var.aws_region", shape = "note"]
+		"[root] var.billing_code" [label = "var.billing_code", shape = "note"]
+		"[root] var.company" [label = "var.company", shape = "note"]
+		"[root] var.ec2_instance_type" [label = "var.ec2_instance_type", shape = "note"]
+		"[root] var.project" [label = "var.project", shape = "note"]
+		"[root] var.route_table_cidr_block" [label = "var.route_table_cidr_block", shape = "note"]
+		"[root] var.subnet_map_public_ip_on_launch" [label = "var.subnet_map_public_ip_on_launch", shape = "note"]
+		"[root] var.subnets_cidr_block" [label = "var.subnets_cidr_block", shape = "note"]
+		"[root] var.vpc_cidr_block" [label = "var.vpc_cidr_block", shape = "note"]
+		"[root] var.vpc_enable_hostnames" [label = "var.vpc_enable_hostnames", shape = "note"]
+		"[root] aws_iam_instance_profile.nginx_profile (expand)" -> "[root] aws_iam_role.allow_nginx_s3 (expand)"
+		"[root] aws_iam_role.allow_nginx_s3 (expand)" -> "[root] local.common_tags (expand)"
+		"[root] aws_iam_role.allow_nginx_s3 (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] aws_iam_role_policy.allow_s3_all (expand)" -> "[root] aws_iam_role.allow_nginx_s3 (expand)"
+		"[root] aws_iam_role_policy.allow_s3_all (expand)" -> "[root] local.s3_bucket_name (expand)"
+		"[root] aws_instance.nginx1 (expand)" -> "[root] aws_iam_instance_profile.nginx_profile (expand)"
+		"[root] aws_instance.nginx1 (expand)" -> "[root] aws_iam_role_policy.allow_s3_all (expand)"
+		"[root] aws_instance.nginx1 (expand)" -> "[root] aws_s3_bucket.web_bucket (expand)"
+		"[root] aws_instance.nginx1 (expand)" -> "[root] aws_security_group.nginx_sg (expand)"
+		"[root] aws_instance.nginx1 (expand)" -> "[root] aws_subnet.subnet1 (expand)"
+		"[root] aws_instance.nginx1 (expand)" -> "[root] data.aws_ssm_parameter.ami (expand)"
+		"[root] aws_instance.nginx1 (expand)" -> "[root] var.ec2_instance_type"
+		"[root] aws_instance.nginx2 (expand)" -> "[root] aws_s3_bucket.web_bucket (expand)"
+		"[root] aws_instance.nginx2 (expand)" -> "[root] aws_security_group.nginx_sg (expand)"
+		"[root] aws_instance.nginx2 (expand)" -> "[root] aws_subnet.subnet2 (expand)"
+		"[root] aws_instance.nginx2 (expand)" -> "[root] data.aws_ssm_parameter.ami (expand)"
+		"[root] aws_instance.nginx2 (expand)" -> "[root] var.ec2_instance_type"
+		"[root] aws_internet_gateway.igw (expand)" -> "[root] aws_vpc.vpc (expand)"
+		"[root] aws_lb.nginx (expand)" -> "[root] aws_s3_bucket.web_bucket (expand)"
+		"[root] aws_lb.nginx (expand)" -> "[root] aws_security_group.alb_sg (expand)"
+		"[root] aws_lb.nginx (expand)" -> "[root] aws_subnet.subnet1 (expand)"
+		"[root] aws_lb.nginx (expand)" -> "[root] aws_subnet.subnet2 (expand)"
+		"[root] aws_lb_listener.nginx (expand)" -> "[root] aws_lb.nginx (expand)"
+		"[root] aws_lb_listener.nginx (expand)" -> "[root] aws_lb_target_group.nginx (expand)"
+		"[root] aws_lb_target_group.nginx (expand)" -> "[root] aws_vpc.vpc (expand)"
+		"[root] aws_lb_target_group_attachment.nginx1 (expand)" -> "[root] aws_instance.nginx1 (expand)"
+		"[root] aws_lb_target_group_attachment.nginx1 (expand)" -> "[root] aws_lb_target_group.nginx (expand)"
+		"[root] aws_lb_target_group_attachment.nginx2 (expand)" -> "[root] aws_instance.nginx2 (expand)"
+		"[root] aws_lb_target_group_attachment.nginx2 (expand)" -> "[root] aws_lb_target_group.nginx (expand)"
+		"[root] aws_route_table.rtb (expand)" -> "[root] aws_internet_gateway.igw (expand)"
+		"[root] aws_route_table.rtb (expand)" -> "[root] var.route_table_cidr_block"
+		"[root] aws_route_table_association.rta-subnet1 (expand)" -> "[root] aws_route_table.rtb (expand)"
+		"[root] aws_route_table_association.rta-subnet1 (expand)" -> "[root] aws_subnet.subnet1 (expand)"
+		"[root] aws_route_table_association.rta-subnet2 (expand)" -> "[root] aws_route_table.rtb (expand)"
+		"[root] aws_route_table_association.rta-subnet2 (expand)" -> "[root] aws_subnet.subnet2 (expand)"
+		"[root] aws_s3_bucket.web_bucket (expand)" -> "[root] data.aws_elb_service_account.root (expand)"
+		"[root] aws_s3_bucket.web_bucket (expand)" -> "[root] local.common_tags (expand)"
+		"[root] aws_s3_bucket.web_bucket (expand)" -> "[root] local.s3_bucket_name (expand)"
+		"[root] aws_s3_bucket_object.graphic (expand)" -> "[root] aws_s3_bucket.web_bucket (expand)"
+		"[root] aws_s3_bucket_object.website (expand)" -> "[root] aws_s3_bucket.web_bucket (expand)"
+		"[root] aws_security_group.alb_sg (expand)" -> "[root] aws_vpc.vpc (expand)"
+		"[root] aws_security_group.nginx_sg (expand)" -> "[root] aws_vpc.vpc (expand)"
+		"[root] aws_subnet.subnet1 (expand)" -> "[root] aws_vpc.vpc (expand)"
+		"[root] aws_subnet.subnet1 (expand)" -> "[root] data.aws_availability_zones.available (expand)"
+		"[root] aws_subnet.subnet1 (expand)" -> "[root] var.subnet_map_public_ip_on_launch"
+		"[root] aws_subnet.subnet1 (expand)" -> "[root] var.subnets_cidr_block"
+		"[root] aws_subnet.subnet2 (expand)" -> "[root] aws_vpc.vpc (expand)"
+		"[root] aws_subnet.subnet2 (expand)" -> "[root] data.aws_availability_zones.available (expand)"
+		"[root] aws_subnet.subnet2 (expand)" -> "[root] var.subnet_map_public_ip_on_launch"
+		"[root] aws_subnet.subnet2 (expand)" -> "[root] var.subnets_cidr_block"
+		"[root] aws_vpc.vpc (expand)" -> "[root] local.common_tags (expand)"
+		"[root] aws_vpc.vpc (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] aws_vpc.vpc (expand)" -> "[root] var.vpc_cidr_block"
+		"[root] aws_vpc.vpc (expand)" -> "[root] var.vpc_enable_hostnames"
+		"[root] data.aws_availability_zones.available (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] data.aws_elb_service_account.root (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] data.aws_ssm_parameter.ami (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] local.common_tags (expand)" -> "[root] var.billing_code"
+		"[root] local.common_tags (expand)" -> "[root] var.company"
+		"[root] local.common_tags (expand)" -> "[root] var.project"
+		"[root] local.s3_bucket_name (expand)" -> "[root] random_integer.rand (expand)"
+		"[root] output.aws_instance_public_dns" -> "[root] aws_lb.nginx (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_lb_listener.nginx (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_lb_target_group_attachment.nginx1 (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_lb_target_group_attachment.nginx2 (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_route_table_association.rta-subnet1 (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_route_table_association.rta-subnet2 (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_s3_bucket_object.graphic (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_s3_bucket_object.website (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"]" -> "[root] var.aws_region"
+		"[root] provider[\"registry.terraform.io/hashicorp/random\"] (close)" -> "[root] random_integer.rand (expand)"
+		"[root] random_integer.rand (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/random\"]"
+		"[root] root" -> "[root] output.aws_instance_public_dns"
+		"[root] root" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)"
+		"[root] root" -> "[root] provider[\"registry.terraform.io/hashicorp/random\"] (close)"
+	}
+}
+
